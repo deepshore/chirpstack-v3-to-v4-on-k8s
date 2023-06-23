@@ -1,0 +1,28 @@
+FROM golang:GOLANG_VERSION-alpine AS builder
+
+ENV PROJECT_PATH=/chirpstack-v3-to-v4
+# ENV CGO_ENABLED=0
+# ENV GO_EXTRA_BUILD_ARGS="-a -installsuffix cgo"
+
+RUN apk add --no-cache ca-certificates tzdata make git bash
+
+RUN mkdir -p $PROJECT_PATH
+COPY chirpstack-v3-to-v4 $PROJECT_PATH
+WORKDIR $PROJECT_PATH
+
+RUN make build
+
+
+FROM alpine:latest  
+
+ENV PROJECT_PATH=/chirpstack-v3-to-v4
+
+RUN apk add --no-cache iputils
+
+RUN mkdir -p $PROJECT_PATH
+
+WORKDIR $PROJECT_PATH
+
+COPY --from=builder $PROJECT_PATH/chirpstack-v3-to-v4 /bin/chirpstack-v3-to-v4
+
+USER 1001

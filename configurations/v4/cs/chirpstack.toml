@@ -1,0 +1,42 @@
+# PostgreSQL configuration.
+[postgresql]
+
+  # PostgreSQL DSN.
+  #
+  # Format example: postgres://<USERNAME>:<PASSWORD>@<HOSTNAME>/<DATABASE>?sslmode=<SSLMODE>.
+  #
+  # SSL mode options:
+  #  * disable - no SSL
+  #  * require - Always SSL (skip verification)
+  #  * verify-ca - Always SSL (verify that the certificate presented by the server was signed by a trusted CA)
+  #  * verify-full - Always SSL (verify that the certification presented by the server was signed by a trusted CA and the server host name matches the one in the certificate)
+  dsn="postgresql://chirpstack:chirpstack@localhost/chirpstack?sslmode=disable"
+
+# Redis configuration.
+[redis]
+
+  # Server address or addresses.
+  #
+  # Example formats:
+  #   redis://127.0.0.1:6379
+  #   redis://:password@127.0.0.1:6379
+  #   redis://username:password@127.0.0.1:6379
+  #
+  # Set multiple addresses when connecting to a cluster.
+  servers=[
+    "redis://127.0.0.1/",
+  ]
+
+  # Redis Cluster.
+  #
+  # Set this to true when the provided URLs are pointing to a Redis Cluster
+  # instance.
+  cluster=false
+
+  # Key prefix.
+  #
+  # A key prefix can be used to avoid key collisions when multiple deployments
+  # are using the same Redis database and it is not possible to separate
+  # keys by database index (e.g. when using Redis Cluster, which does not
+  # support multiple databases).
+  key_prefix=""
