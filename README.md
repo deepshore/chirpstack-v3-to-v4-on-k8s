@@ -15,9 +15,9 @@ Migrate Chirpstack from v3 to v4 on Kubernetes
 
 ### Provide the configuration files
 
-1. Place your chirpstack.toml for v4 in configurations/v4/cs/.
-2. Place your chirpstack-application-server.toml for v3 in configurations/v3/as/.
-3. Place your chirpstack-network-server.toml for v3 in configurations/v3/ns/. You can place more than one configuration for the network-server.
+1. Place your chirpstack.toml for v4 in `configurations/v4/cs/`.
+2. Place your chirpstack-application-server.toml for v3 in `configurations/v3/as/`.
+3. Place your chirpstack-network-server.toml for v3 in `configurations/v3/ns/`. You can place more than one configuration for the network-server.
 
 `chirpstack-v3-to-v4` will only use the connection data for Postgres and Redis from the configuration files. Accordingly, at most the following settings are taken from the tomls - see also [https://github.com/chirpstack/chirpstack-v3-to-v4/blob/v4.0.4/main.go#L54](https://github.com/chirpstack/chirpstack-v3-to-v4/blob/v4.0.4/main.go#L54):
 * `postgresql.dsn`
